@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+<!-- Populate tab bar-->
+{% set navigation_bar = [
+	('/home','home','Home'),
+	('/profile','profile','Profile'),
+	('/inbox','inbox','Inbox'),
+	('/adventures','adventures','Your Adventures'),
+	('/listings','listings','Your Listings'),
+	('/account','account','Account')
+	] -%}
+
+<!-- Sets active_page to home -->
+{% set active_page = active_page|default('home') -%}
+
+
+
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<ul class="nav nav-tabs" role="tablist">
+			{% for href, id, caption in navigation_bar %}
+				<li {% if id == active_page %} class="active" {% endif %}>
+				<a href="{{ href|e }}" role="tab" data-toggle="tab">{{ caption|e }}</a></li>
+			{% endfor %}
+			<!--<li><a href="/home" data-toggle="tab">Dashboard</a></li>
+			<li><a href="/dashboard/profile" data-toggle="profile">Profile</a></li>
+			<li><a href="#tab3" data-toggle="tab">Inbox</a></li>
+			<li><a href="#tab4" data-toggle="tab">Your Adventures</a></li>
+			<li><a href="#tab5" data-toggle="tab">Your Listing</a></li>
+			<li><a href="#tab6" data-toggle="tab">Account</a></li>-->
+		</ul>
+	</div>
+	<div class="tab-content">
+		<div class="tab-pane active" id="home">
+			{% include '_home.html' %}
+		
+		<div class="tab-pane" id="profile">
+			{% include '_profile.html' %}
+		</div>
+		<div class="tab-pane" id="inbox">
+			<p>something else here</p>
+
+		</div>
+		<div class="tab-pane" id="adventures">
+			<p>something else here</p>
+
+		</div>
+		<div class="tab-pane" id="listings">
+			<p>something else here</p>
+
+		</div>
+		<div class="tab-pane" id="account">
+			<p>something else here</p>
+
+		</div>
+	</div>
+</div>	
+{% endblock %}
